@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "deploy" ]
+  pull_request:
+    branches: [ "deploy" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: get docker image name
+      run: image_name="minibear2333/roadmap:$(date +%s)"
+    - name: Build the roadmap Docker image
+      run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag $image_name
