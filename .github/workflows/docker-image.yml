@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "deploy" ]
+    tags:
+      - v*
   pull_request:
     branches: [ "deploy" ]
 
@@ -17,6 +19,6 @@ jobs:
     - name: login docker hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     - name: Build the roadmap Docker image
-      run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag minibear2333/roadmap:deploy
+      run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag minibear2333/roadmap:${{ github.ref }}
     - name: push docker image
-      run: docker push minibear2333/roadmap:deploy
+      run: docker push minibear2333/roadmap:${{ github.ref }}
