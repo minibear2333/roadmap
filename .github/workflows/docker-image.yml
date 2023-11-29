@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Get version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/[a-z]*\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/[a-z]*\//}" >> $GITHUB_OUTPUT 
     - uses: actions/checkout@v3
     - name: login docker hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
