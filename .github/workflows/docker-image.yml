@@ -15,10 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/[a-z]*\//}
     - uses: actions/checkout@v3
     - name: login docker hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     - name: Build the roadmap Docker image
-      run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag minibear2333/roadmap:${{ github.ref }}
+      run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag minibear2333/roadmap:${{ steps.get_version.outputs.VERSION }}
     - name: push docker image
-      run: docker push minibear2333/roadmap:${{ github.ref }}
+      run: docker push minibear2333/roadmap:${{ steps.get_version.outputs.VERSION }}
