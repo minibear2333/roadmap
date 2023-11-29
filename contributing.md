@@ -9,13 +9,13 @@
 * Draw.io Integration
 * Draw.io Integration: Mermaid plugin
 
-目录位于 [roadmaps](roadmaps/) 编辑`drawio`文件。请参考
+目录位于 [roadmaps](roadmaps/) 编辑`drawio`文件。请参考。需要在`format`的`sketch`选项打勾然后可以看到手绘图效果。
 
 ## 导出文件
 
 编辑完成后到菜单栏 `Diagram-File-Embed-HTML` 生成html，覆盖同名html的内容。
 
-菜单栏 生成image覆盖同名 `Diagram-File-Export` 导出`svg`和`png`格式文件。
+菜单栏 生成image覆盖同名 `Diagram-File-Export` 导出`svg`格式文件。
 
 ## 合并
 
