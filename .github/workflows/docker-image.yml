@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: get docker image name
+    - name: login docker hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     - name: Build the roadmap Docker image
       run: cd site/roadmap.coding3min.com && docker build . --file Dockerfile --tag minibear2333/roadmap:deploy
