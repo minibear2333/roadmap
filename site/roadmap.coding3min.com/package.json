@@ -11,7 +11,15 @@
     "build": "vuepress build ."
   },
   "devDependencies": {
+    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.17",
+    "@vuepress/plugin-pwa": "^1.9.10",
     "vuepress": "^2.0.0-rc.0",
+    "vuepress-plugin-nuggets-style-copy": "^1.0.3",
+    "vuepress-plugin-seo2": "^2.0.0-rc.1",
+    "vuepress-plugin-sitemap2": "^2.0.0-rc.1",
     "vuepress-theme-reco": "^2.0.0-rc.1"
+  },
+  "dependencies": {
+    "@vuepress/plugin-medium-zoom": "^2.0.0-rc.0"
   }
 }

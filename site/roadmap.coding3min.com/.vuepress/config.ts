@@ -1,33 +1,71 @@
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
-import recoTheme from "vuepress-theme-reco";
-
+import recoTheme from "vuepress-theme-reco";  
 
 
 export default defineUserConfig({
-  title: "vuepress-theme-reco",
-  description: "Just playing around",
+  title: "Roadmap",
+  description: "为每一个技术人在职业生涯中指引方向。",
   theme: recoTheme({
     locales: {
       // 键名是该语言所属的子路径
       // 作为特例，默认语言可以使用 '/' 作为其路径。
       '/': {
         lang: 'zh-CN',
-        title: 'VuePress',
-        description: 'Vue 驱动的静态网站生成器',
+        title: 'Roadmap',
+        description: '为每一个技术人在职业生涯中指引方向。',
       },
     },
+  markdown: {
+    lineNumbers: true // 代码块显示行号
+  },
+  plugins: [
+    ['@vuepress-reco/vuepress-plugin-back-to-top'],
+    ['@vuepress-reco/vuepress-plugin-pagation', {
+            perPage: 5  // 每页展示条数
+        }],
+    ["vuepress-plugin-nuggets-style-copy", {
+        copyText: "copy",
+        tip: {
+          content: "复制成功!"
+        }
+      }],
+    ['vuepress-plugin-sitemap2',{
+      hostname: 'Roadmap.coding3min.com',
+      changefreq: 'weekly',
+    }],
+    ['@vuepress/pwa', {
+          serviceWorker: true,
+          updatePopup: {
+              message: "发现新内容可用",
+              buttonText: "刷新"
+          }
+        }],
+    [
+      //图片放大插件 先安装在配置， npm install @vuepress/plugin-medium-zoom --save
+      '@vuepress\plugin-medium-zoom', {
+        selector: '.page img',
+        delay: 1000,
+        options: {
+          margin: 24,
+          background: 'rgba(25,18,25,0.9)',
+          scrollOffset: 40
+        }
+      }
+    ],
+  ],
     style: "@vuepress-reco/style-default",
     logo: "/logo.png",
-    author: "reco_luan",
+    author: "minibear2333",
     authorAvatar: "/head.png",
-    docsRepo: "https://github.com/vuepress-reco/vuepress-theme-reco-next",
+    docsRepo: "https://github.com/minibear2333/roadmap",
     docsBranch: "main",
     docsDir: "example",
     lastUpdatedText: "",
     // series 为原 sidebar
+    // 电子书
     series: {
-      "/docs/theme-reco/": [
+      "/docs/ansible/": [
         {
           text: "module one",
           children: ["home", "theme"],
@@ -38,40 +76,39 @@ export default defineUserConfig({
         },
       ],
     },
+    // 菜单栏
     navbar: [
-      { text: "Home", link: "/" },
-      { text: "Categories", link: "/categories/reco/1/" },
-      { text: "Tags", link: "/tags/tag1/1/" },
+      { icon:"Home",text: "Home", link: "/" },
       {
-        text: "Docs",
+        icon:"Map",
+        text: "Roadmap",
         children: [
-          { text: "vuepress-reco", link: "/docs/theme-reco/theme" },
-          { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
+          { icon:"Language",text: "主流语言路线图", link: "/docs/ansible/home" },
+          { icon:"UserCertification",text: "职业发展路线图", link: "/docs/ansible/home" },
+          { icon:"Tools",text: "各种工具路线图", link: "/docs/ansible/home" },
         ],
       },
+      {
+        icon:"Book",
+        text: "Books",
+        children: [
+          { icon:"Linux",text: "shell实践手册", link: "https://shell-practice.readthedocs.io/" },
+          { icon:"RouterWifi",text: "nginx速查手册", link: "http://nginx.coding3min.com/" },
+          { icon:"Deploy",text: "ansible实践手册", link: "http://ansible-practice.readthedocs.io/" },
+        ],
+      },
+      { icon:"Blog", text: "博客", link: "/categories/gonggao/1/" },
     ],
+    // 公告
     bulletin: {
       body: [
         {
-          type: "text",
-          content: `🎉🎉🎉 reco 主题 2.x 已经接近 Beta 版本，在发布 Latest 版本之前不会再有大的更新，大家可以尽情尝鲜了，并且希望大家在 QQ 群和 GitHub 踊跃反馈使用体验，我会在第一时间响应。`,
-          style: "font-size: 12px;",
-        },
-        {
-          type: "hr",
-        },
-        {
           type: "title",
-          content: "QQ 群",
+          content: "最新消息",
         },
         {
           type: "text",
-          content: `
-          <ul>
-            <li>QQ群1：1037296104</li>
-            <li>QQ群2：1061561395</li>
-            <li>QQ群3：962687802</li>
-          </ul>`,
+          content: `🎉🎉🎉 极客时间课程返点已上线。Roadmap项目即将上线shell、ansible、k8s、mysql以及爬虫相关等学习路径图。`,
           style: "font-size: 12px;",
         },
         {
@@ -85,8 +122,8 @@ export default defineUserConfig({
           type: "text",
           content: `
           <ul>
-            <li><a href="https://github.com/vuepress-reco/vuepress-theme-reco-next/issues">Issues<a/></li>
-            <li><a href="https://github.com/vuepress-reco/vuepress-theme-reco-next/discussions/1">Discussions<a/></li>
+            <li><a href="https://github.com/minibear2333/roadmap/issues">Issues<a/></li>
+            <li><a href="https://github.com/minibear2333/roadmap/discussions/1">Discussions<a/></li>
           </ul>`,
           style: "font-size: 12px;",
         },
@@ -97,26 +134,38 @@ export default defineUserConfig({
           type: "buttongroup",
           children: [
             {
-              text: "打赏",
-              link: "/docs/others/donate.html",
+              text: "Star",
+              link: "https://github.com/minibear2333/roadmap",
+            },
+            {
+              text: "返利",
+              link: "/blogs/other/geektime.html",
             },
           ],
         },
       ],
     },
-    // commentConfig: {
-    //   type: 'valie',
-    //   // options 与 1.x 的 valineConfig 配置一致
-    //   options: {
-    //     // appId: 'xxx',
-    //     // appKey: 'xxx',
-    //     // placeholder: '填写邮箱可以收到回复提醒哦！',
-    //     // verify: true, // 验证码服务
-    //     // notify: true,
-    //     // recordIP: true,
-    //     // hideComments: true // 隐藏评论
-    //   },
-    // },
+    primaryColor: '#006eff',
+    commentConfig: {
+      type: 'giscus',
+      options: {
+        repo: 'minibear2333/blog-comment',
+        repoId: 'MDEwOlJlcG9zaXRvcnkzODAwOTk5MzE=',
+        category: 'Announcements',
+        categoryId: 'DIC_kwDOFqfdW84Cba1y',
+        mapping: 'title',
+        hideComments: false, // 全局隐藏评论，默认 false
+        crossorigin: "anonymous",
+        inputPosition: 'top',
+        len:'en',
+        lang: 'zh-CN',
+        loading:'lazy'
+      },
+    },
+    // 自动将 docs 文件夹下的文档，按照文件夹嵌套关系生成系列的配置
+    // https://vuepress-theme-reco.recoluan.com/docs/theme/auto-set-series.html
+    autoSetSeries: true,
+    noFoundPageByTencent: true,
   }),
   // debug: true,
 });
